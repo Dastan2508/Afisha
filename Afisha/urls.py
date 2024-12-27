@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from movie_app import views
+from . import swagger
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -12,5 +13,8 @@ urlpatterns = [
     path('api/v1/reviews/<int:id>/', views.review_detail_api_view, name='reviews_detail'),
     path('api/v1/movies/reviews/', views.movie_review_list_api_view, name='movie_review_list'),
 
-    path('api/v1/users/', include('users.urls'))
+    path('api/v1/users/', include('users.urls')),
+    path('api/v1/', include('movie_app.urls')),
 ]
+
+urlpatterns += swagger.urlpatterns
